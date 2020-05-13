@@ -33,7 +33,7 @@ $(() => {
 function creaTabellaDrivers(drivers)
 {
     let _table = $("<table>");
-    _table.append($("<tr><td>ID</td><td>First Name</td><td>Last Name</td><td>Nationality</td><td>Photo</td></tr>"));
+    _table.append($("<tr><td>ID</td><td>First Name</td><td>Last Name</td><td>Nationality</td><td>Photo</td><td>Details</td></tr>"));
     for (let i = 0; i < drivers.length; i++)
     {
         let row = $("<tr>");
@@ -50,15 +50,19 @@ function creaTabellaDrivers(drivers)
                 let _img = $("<img>");
                 _img.prop("src", drivers[i][index]);
                 _img.prop("height", "50");
-                row.append(_img);
+                cell.append(_img);
+                row.append(cell);
             }
         }
-        let btnInfo = $(`<input type='button' onclick='visualizzaDriver(${drivers[i]["id"]})' value='Info'>`);
-        row.append(btnInfo);
+        let cell = $("<td>");
+        let btnInfo = $(`<input type='button' onclick='visualizzaDriver(${drivers[i]["id"]})' value='Info' class="btn">`);
+        cell.append(btnInfo)
+        row.append(cell);
         _table.append(row);
 
     }
     $("#wrapper").append(_table);
+    _table.addClass("table table-hover");
 }
 
 function visualizzaDriver(_driverId)
@@ -84,15 +88,21 @@ function visualizzaDriver(_driverId)
         let _img = $("<img>");
         _img.prop("src", foto);
         _img.prop("height", "150");
-        _info.append(_img);
+        let _center = $("<center>");
+        _center.append(_img);
+        _info.append(_center);
         _p = $(`<p>${desc}</p>`);
-        _info.append(_p);
+        _p.addClass("desc");
+        _p.css("text-align", "justify");
+        let _center2 = $("<center>");
+        _center2.append(_p);
+        _info.append(_center2);
     });
 }
 
 function creaTabellaTeams(teams) {
     let _table = $("<table>");
-    _table.append($("<tr><td>ID</td><td>Name</td><td>Country</td><td>Logo</td><td>First Driver</td><td>Second Driver</td><td>Car Photo</td></tr>"));
+    _table.append($("<tr><td>ID</td><td>Name</td><td>Country</td><td>Logo</td><td>First Driver</td><td>Second Driver</td><td>Car Photo</td><td>Details</td></tr>"));
     for (let i = 0; i < teams.length; i++) {
         let row = $("<tr>");
         for (let index in teams[i]) {
@@ -105,12 +115,16 @@ function creaTabellaTeams(teams) {
                 let _img = $("<img>");
                 _img.prop("src", teams[i][index]);
                 _img.prop("height", "50");
-                row.append(_img);
+                cell.append(_img);
+                row.append(cell);
             }
         }
-        let btnInfo = $(`<input type='button' onclick='visualizzaTeam(${teams[i]["id"]})' value='Info'>`);
-        row.append(btnInfo);
+        let cell = $("<td>");
+        let btnInfo = $(`<input type='button' onclick='visualizzaTeam(${teams[i]["id"]})' value='Info' class="btn">`);
+        cell.append(btnInfo)
+        row.append(cell);
         _table.append(row);
+        _table.addClass("table table-hover");
 
     }
     $("#wrapper").append(_table);
@@ -136,7 +150,9 @@ function visualizzaTeam(_teamId) {
         let _img = $("<img>");
         _img.prop("src", logo);
         _img.prop("height", "150");
-        _info.append(_img);
+        let _center = $("<center>");
+        _center.append(_img);
+        _info.append(_center);
         let _p = $(`<p>Full team Name: ${nomeCompleto}</p>`);
         _info.append(_p);
         _p = $(`<p>Country: ${paese}</p>`);
@@ -152,7 +168,9 @@ function visualizzaTeam(_teamId) {
         _img = $("<img>");
         _img.prop("src", foto);
         _img.prop("height", "150");
-        _info.append(_img);
+        let _center2 = $("<center>");
+        _center2.append(_img);
+        _info.append(_center2);
     });
 }
 
@@ -176,13 +194,15 @@ function creaTabellaCircuits(circuits) {
                 let _img = $("<img>");
                 _img.prop("src", circuits[i][index]);
                 _img.prop("height", "50");
-                row.append(_img);
+                cell.append(_img);
+                row.append(cell);
             }
         }
         _table.append(row);
 
     }
     $("#wrapper").append(_table);
+    _table.addClass("table table-hover");
 }
 
 function richiesta(parameters,callbackFunction) {

@@ -1,1 +1,34 @@
-﻿
+﻿input[type=button]
+{
+    margin-top: 10px;
+}
+body
+{
+    background-color: white;
+}
+
+nav
+{
+    background-color:red !important;
+}
+a
+{
+    color:white !important;
+    font-weight:bold;
+}
+.btn {
+    background-color:red !important;
+    color:white;
+}
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+#info p {
+    text-align: center;
+    font-weight: bold;
+}
+.desc {
+    width: 50%;
+    font-weight: normal !important;
+}
